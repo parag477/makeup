@@ -4,6 +4,15 @@ import cv2
 import av
 from makeup_app import MakeupApplication  # Your MakeupApplication class
 
+from streamlit_webrtc import WebRtcMode, RTCConfiguration
+
+rtc_configuration = RTCConfiguration({
+    "iceServers": [
+        {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
+        {"urls": "turn:YOUR_TURN_SERVER_URL", "username": "YOUR_USERNAME", "credential": "YOUR_PASSWORD"}  # Replace with your TURN server details
+    ]
+})
+
 class VideoProcessor:
     def __init__(self):
         self.makeup_app = MakeupApplication()
@@ -19,8 +28,12 @@ st.title("Virtual Makeup Application with Webcam")
 webrtc_streamer(
     key="example",
     video_processor_factory=VideoProcessor,
+    rtc_configuration=rtc_configuration,
     media_stream_constraints={
-        "video": True,
-        "audio": False  # Disable audio if not needed
+        "video": {
+            "width": {"ideal": 1280},
+            "height": {"ideal": 720}
+        },
+        "audio": False
     }
 )
