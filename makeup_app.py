@@ -162,7 +162,7 @@ class MakeupApplication:
 
                 cheek_indices = [234, 454]
                 chin_index = 152
-                # frame = self.apply_blush(frame, face_landmarks, cheek_indices, chin_index)
+                frame = self.apply_blush(frame, face_landmarks, cheek_indices, chin_index)
 
         return frame
 
