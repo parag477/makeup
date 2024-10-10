@@ -26,7 +26,7 @@ st.title("Virtual Makeup Application with Webcam")
 # webrtc_streamer(key="example", video_processor_factory=VideoProcessor)
 webrtc_streamer(
     key="example",
-    video_processor_factory=VideoProcessor,
+    # video_processor_factory=VideoProcessor,
     rtc_configuration=rtc_configuration,
     media_stream_constraints={
         "video": {
