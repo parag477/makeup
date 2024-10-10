@@ -4,3 +4,4 @@ mediapipe
 numpy
 scipy
 streamlit-webrtc
+pip install asyncio
