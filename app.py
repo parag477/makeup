@@ -40,7 +40,7 @@ class VideoProcessor:
             logging.error(f"Error processing video frame: {str(e)}")
             return frame  # Return the original frame in case of error
 
-st.title("Virtual Makeup Application with Webcam")
+st.title("Virtual Makeup Application with Webcam tst")
 
 # WebRTC video streamer
 webrtc_streamer(
