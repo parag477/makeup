@@ -7,14 +7,23 @@ from makeup_app import MakeupApplication  # Your MakeupApplication class
 # Add real TURN server configuration
 rtc_configuration = RTCConfiguration({
     "iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
+        {"urls": ["stun:stun.l.google.com:19302"], [ "stun:bn-turn2.xirsys.com" ]},  # Google's public STUN server
         {
-            "urls": "turn:YOUR_TURN_SERVER_URL", 
-            "username": "YOUR_USERNAME", 
-            "credential": "YOUR_PASSWORD"  # Replace with real TURN server credentials
+            "urls": [
+               "turn:bn-turn2.xirsys.com:80?transport=udp",
+               "turn:bn-turn2.xirsys.com:3478?transport=udp",
+               "turn:bn-turn2.xirsys.com:80?transport=tcp",
+               "turn:bn-turn2.xirsys.com:3478?transport=tcp",
+               "turns:bn-turn2.xirsys.com:443?transport=tcp",
+               "turns:bn-turn2.xirsys.com:5349?transport=tcp"
+           ], 
+            "username": "41G6nRJn3PLi5np_1pjDKAtO9fygkHx94ENGd59gP28EvVonLQ10bXjIA5sxYcLIAAAAAGcINydwYXJhZzQ3Nw==", 
+            "credential": "275e088c-8745-11ef-9116-0242ac140004"  # Replace with real TURN server credentials
         }
     ]
 })
+
+
 
 # Processor class for applying virtual makeup
 class VideoProcessor:
