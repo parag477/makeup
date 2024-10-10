@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.DEBUG)
 # RTC configuration (STUN server for now, you can add TURN if needed)
 rtc_configuration = RTCConfiguration({
     "iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
+        {"urls": ["stun:stun1.l.google.com:19302"]},  # Google's public STUN server
     ]
 })
 
