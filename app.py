@@ -2,28 +2,27 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 import cv2
 import av
+import asyncio
 from makeup_app import MakeupApplication  # Your MakeupApplication class
 
 # Add real TURN server configuration
 rtc_configuration = RTCConfiguration({
     "iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302", "stun:bn-turn2.xirsys.com" ]},  # Google's public STUN server
+        {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
         {
             "urls": [
-               "turn:bn-turn2.xirsys.com:80?transport=udp",
-               "turn:bn-turn2.xirsys.com:3478?transport=udp",
-               "turn:bn-turn2.xirsys.com:80?transport=tcp",
-               "turn:bn-turn2.xirsys.com:3478?transport=tcp",
-               "turns:bn-turn2.xirsys.com:443?transport=tcp",
-               "turns:bn-turn2.xirsys.com:5349?transport=tcp"
-           ], 
+                "turn:bn-turn2.xirsys.com:80?transport=udp",
+                "turn:bn-turn2.xirsys.com:3478?transport=udp",
+                "turn:bn-turn2.xirsys.com:80?transport=tcp",
+                "turn:bn-turn2.xirsys.com:3478?transport=tcp",
+                "turns:bn-turn2.xirsys.com:443?transport=tcp",
+                "turns:bn-turn2.xirsys.com:5349?transport=tcp"
+            ],
             "username": "41G6nRJn3PLi5np_1pjDKAtO9fygkHx94ENGd59gP28EvVonLQ10bXjIA5sxYcLIAAAAAGcINydwYXJhZzQ3Nw==", 
             "credential": "275e088c-8745-11ef-9116-0242ac140004"  # Replace with real TURN server credentials
         }
     ]
 })
-
-
 
 # Processor class for applying virtual makeup
 class VideoProcessor:
@@ -35,7 +34,11 @@ class VideoProcessor:
         img = self.makeup_app.process_frame(img)  # Apply makeup filters
         return av.VideoFrame.from_ndarray(img, format="bgr24")  # Return processed frame
 
-st.title("Virtual Makeup Application with Webcamm")
+st.title("Virtual Makeup Application with Webcadm")
+
+# Initialize asyncio loop if not running
+if not asyncio.get_event_loop().is_running():
+    asyncio.set_event_loop(asyncio.new_event_loop())
 
 # Improved WebRTC streamer with TURN server and better error handling
 webrtc_streamer(
