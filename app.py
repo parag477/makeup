@@ -9,7 +9,6 @@ from streamlit_webrtc import WebRtcMode, RTCConfiguration
 rtc_configuration = RTCConfiguration({
     "iceServers": [
         {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
-        {"urls": "turn:YOUR_TURN_SERVER_URL", "username": "YOUR_USERNAME", "credential": "YOUR_PASSWORD"}  # Replace with your TURN server details
     ]
 })
 
