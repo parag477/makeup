@@ -7,7 +7,7 @@ from makeup_app import MakeupApplication  # Your MakeupApplication class
 # Add real TURN server configuration
 rtc_configuration = RTCConfiguration({
     "iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302"], [ "stun:bn-turn2.xirsys.com" ]},  # Google's public STUN server
+        {"urls": ["stun:stun.l.google.com:19302", "stun:bn-turn2.xirsys.com" ]},  # Google's public STUN server
         {
             "urls": [
                "turn:bn-turn2.xirsys.com:80?transport=udp",
