@@ -58,11 +58,6 @@ def create_event_loop():
 
 create_event_loop()
 
-def ice_connection_state_handler(ice_state):
-    if ice_state == "disconnected" or ice_state == "failed":
-        st.error("Connection failed! Check your network or TURN server configuration.")
-    else:
-        st.write(f"ICE connection state: {ice_state}")
 
 # Improved WebRTC streamer with TURN server and better error handling
 webrtc_streamer(
@@ -77,7 +72,6 @@ webrtc_streamer(
         },
         "audio": False  # Disable audio
     },
-    on_ice_connection_state_change=ice_connection_state_handler,
     async_processing=False,  # Disable async processing for simplicity
 )
 
