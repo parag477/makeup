@@ -34,11 +34,20 @@ class VideoProcessor:
         img = self.makeup_app.process_frame(img)  # Apply makeup filters
         return av.VideoFrame.from_ndarray(img, format="bgr24")  # Return processed frame
 
-st.title("Virtual Makeup Application with Webcadm")
+st.title("Virtual Makeup Application with Webcam")
 
-# Initialize asyncio loop if not running
-if not asyncio.get_event_loop().is_running():
-    asyncio.set_event_loop(asyncio.new_event_loop())
+# Workaround for Streamlit's event loop issue
+def create_event_loop():
+    try:
+        # Ensure an event loop is available in the current thread
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        # If no loop is found, create a new one and set it
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    return loop
+
+create_event_loop()
 
 # Improved WebRTC streamer with TURN server and better error handling
 webrtc_streamer(
