@@ -5,21 +5,42 @@ import av
 import asyncio
 from makeup_app import MakeupApplication  # Your MakeupApplication class
 
-# Add real TURN server configuration
+# Add all the provided STUN and TURN server configurations
 rtc_configuration = RTCConfiguration({
     "iceServers": [
-        {"urls": ["stun:stun.l.google.com:19302"]},  # Google's public STUN server
+        {"urls": ["stun:stun01.sipphone.com"]},
+        {"urls": ["stun:stun.ekiga.net"]},
+        {"urls": ["stun:stun.fwdnet.net"]},
+        {"urls": ["stun:stun.ideasip.com"]},
+        {"urls": ["stun:stun.iptel.org"]},
+        {"urls": ["stun:stun.rixtelecom.se"]},
+        {"urls": ["stun:stun.schlund.de"]},
+        {"urls": ["stun:stun.l.google.com:19302"]},
+        {"urls": ["stun:stun1.l.google.com:19302"]},
+        {"urls": ["stun:stun2.l.google.com:19302"]},
+        {"urls": ["stun:stun3.l.google.com:19302"]},
+        {"urls": ["stun:stun4.l.google.com:19302"]},
+        {"urls": ["stun:stunserver.org"]},
+        {"urls": ["stun:stun.softjoys.com"]},
+        {"urls": ["stun:stun.voiparound.com"]},
+        {"urls": ["stun:stun.voipbuster.com"]},
+        {"urls": ["stun:stun.voipstunt.com"]},
+        {"urls": ["stun:stun.voxgratia.org"]},
+        {"urls": ["stun:stun.xten.com"]},
         {
-            "urls": [
-                "turn:bn-turn2.xirsys.com:80?transport=udp",
-                "turn:bn-turn2.xirsys.com:3478?transport=udp",
-                "turn:bn-turn2.xirsys.com:80?transport=tcp",
-                "turn:bn-turn2.xirsys.com:3478?transport=tcp",
-                "turns:bn-turn2.xirsys.com:443?transport=tcp",
-                "turns:bn-turn2.xirsys.com:5349?transport=tcp"
-            ],
-            "username": "41G6nRJn3PLi5np_1pjDKAtO9fygkHx94ENGd59gP28EvVonLQ10bXjIA5sxYcLIAAAAAGcINydwYXJhZzQ3Nw==", 
-            "credential": "275e088c-8745-11ef-9116-0242ac140004"  # Replace with real TURN server credentials
+            "urls": "turn:numb.viagenie.ca",
+            "username": "webrtc@live.com",
+            "credential": "muazkh"
+        },
+        {
+            "urls": "turn:192.158.29.39:3478?transport=udp",
+            "username": "28224511:1379330808",
+            "credential": "JZEOEt2V3Qb0y27GRntt2u2PAYA="
+        },
+        {
+            "urls": "turn:192.158.29.39:3478?transport=tcp",
+            "username": "28224511:1379330808",
+            "credential": "JZEOEt2V3Qb0y27GRntt2u2PAYA="
         }
     ]
 })
@@ -34,7 +55,7 @@ class VideoProcessor:
         img = self.makeup_app.process_frame(img)  # Apply makeup filters
         return av.VideoFrame.from_ndarray(img, format="bgr24")  # Return processed frame
 
-st.title("Virtual Makeup Application with Webcam")
+st.title("Virtual Makeup Applicatiosn with Webcam")
 
 # Workaround for Streamlit's event loop issue
 def create_event_loop():
